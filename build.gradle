@@ -1,0 +1,44 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.5.2'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'checkstyle'
+}
+
+group = 'com.exercise.ranking'
+version = '0.0.1'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'io.springfox:springfox-boot-starter:3.0.0'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	runtimeOnly 'com.h2database:h2'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+	implementation 'org.springdoc:springdoc-openapi-ui:1.5.9'
+}
+
+checkstyle {
+	configFile = rootProject.file('config/checkstyle/checkstyle.xml')
+	// Change this boolean to see or not see violations in the console
+	showViolations true
+	// Change this to true to ignore warnings and continue the build, default:false
+	ignoreFailures false
+	// version of checkstyle to use. Gradle uses older version
+	toolVersion "7.5.1"
+	// Use own project checkstyle config, is found at the default checkstyle path config/checkstyle/checkstyle.xml
+}
+
+test {
+	useJUnitPlatform()
+}
